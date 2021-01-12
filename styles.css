@@ -1,0 +1,93 @@
+.alone{
+    color: maroon;
+}
+
+.flexheader{
+}
+
+.menu{
+    order: 1;
+}
+
+.title{
+    order: 2;
+    text-align: center;
+}
+
+.image{
+    order: 4;
+    justify-content: flex-end;
+}
+
+main{
+    background-color: rgb(216, 245, 215);
+}
+
+.flexmain{
+    display: flex;
+    justify-content: center;
+}
+
+h1{
+    order: 1;
+    color: rgb(156, 10, 10);    
+}
+
+.flexmainone{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tabun{
+    order: 2;
+}
+
+.flexmainbistwo{
+    display: flex;
+    justify-content: center;
+}
+.tabdeux{
+    order: 3;
+}
+
+.tabtrois{
+    order: 4;
+}
+
+footer{
+    background-color: rgba(250, 0, 0, 0.336);
+}
+
+.un{
+    font-weight: bold;
+}
+
+.italic{
+    font-style: italic;
+}
+
+.strong{
+    font-weight: bold;
+}
+h2 {
+    font-family: cursive;
+    color: rgb(27, 67, 104);
+}
+
+h3 {
+    font-family: monospace;
+}
+
+#photo-profile{
+    border-radius: 50%;
+}
+#entete{
+    display: flex;
+    justify-content: space-around;
+    background-color: blue;
+}
+
+/*----------------style karl-------------------*/
+
+
