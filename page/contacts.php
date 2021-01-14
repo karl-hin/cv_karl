@@ -8,6 +8,7 @@ $mail = filter_input(INPUT_POST, 'user_mail');
 $valeur = filter_input(INPUT_POST, 'choix_site');
 $user_message = filter_input(INPUT_POST, 'user_message');
 
+
 $date = date('Y-m-d-H-i-s');
 $file = 'contact/contact_'.$date.'.txt';
 
@@ -17,6 +18,7 @@ file_put_contents($file, $prenom, FILE_APPEND | LOCK_EX);
 file_put_contents($file, $mail, FILE_APPEND | LOCK_EX);
 file_put_contents($file, $valeur, FILE_APPEND | LOCK_EX);
 file_put_contents($file, $user_message, FILE_APPEND | LOCK_EX);
+
 
 ?>
 <main>
@@ -31,18 +33,46 @@ file_put_contents($file, $user_message, FILE_APPEND | LOCK_EX);
 
             <input type="radio" id="contactChoice2" name="contacts1" value="monsieur">
             <label for="contactChoice2">Monsieur</label>
+            <?php
+            if (!empty($choice1)) {
+            echo "";
+            } else {
+            echo "erreur le champs est vide";
+            }
+            ?>
         </div>
         <div>
             <label for="name">Nom:</label>
             <input type="text" id="name" name="user_name" placeholder="Entrez votre nom">
+            <?php
+            if (!empty($nom)) {
+                echo "";
+            } else {
+                echo "erreur le champs est vide";
+            }
+            ?>
         </div>
         <div>
             <label for="forename">Prénom</label>
             <input type="text" id="forename" name="user_forename" placeholder="Entrez votre prénom">
+            <?php
+            if (!empty($prenom)) {
+                echo "";
+            } else {
+                echo "erreur le champs est vide";
+            }
+            ?>
         </div>
         <div>
             <label for="mail">e-mail:</label>
             <input type="email" id="mail" name="user_mail" placeholder="Entrez votre e-mail">
+            <?php
+            if (!empty($mail)) {
+                echo "";
+            } else {
+                echo "erreur le champs est vide";
+            }
+            ?>
         </div>
         <div>
             <p>Raison du contact</p>
@@ -57,6 +87,13 @@ file_put_contents($file, $user_message, FILE_APPEND | LOCK_EX);
         <div>
             <label for="msg">Message:</label>
             <textarea id="msg" name="user_message" placeholder="Entrez votre message"></textarea>
+            <?php
+            if (!empty($user_message)) {
+                echo "";
+            } else {
+                echo "erreur le champs est vide";
+            }
+            ?>
         </div>
         <div>
             <button type="submit">Envoyer</button>
