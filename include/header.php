@@ -18,8 +18,8 @@
         <img src="image/copie.jpg" id="avatar_karl" width="100" height="111" alt="photo Karl Hinterseber" id="photo-profile" />
     </div>
     <div class="boutonnav" id="navmain">
-        <a class="active" href="page/accueil.php">Présentation</a>
-        <a class="boutonsnav" href="page/hobby.php">Hobbies</a>
-        <a class="boutonsnav" href="page/contacts.php">Contact</a>
+        <a class="active" href="index.php">Présentation</a>
+        <a class="boutonsnav" href="index.php?page=hobby">Hobbies</a>
+        <a class="boutonsnav" href="index.php?page=contacts">Contact</a>
     </div>
 </header>
