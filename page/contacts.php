@@ -16,7 +16,6 @@ if (filter_has_var(INPUT_POST, "envoyer")) {
     file_put_contents($file, $mail, FILE_APPEND | LOCK_EX);
     file_put_contents($file, $valeur, FILE_APPEND | LOCK_EX);
     file_put_contents($file, $user_message, FILE_APPEND | LOCK_EX);
-
 }
 $error1 = "erreur le champs est vide";
 ?>
