@@ -1,15 +1,37 @@
 <?php
 if (filter_has_var(INPUT_POST, "envoyer")) {
+
+/*
+     $args = array(
+    'contacts1' => FILTER_SANITIZE_STRING,
+    'user_name' => FILTER_SANITIZE_STRING,
+    'user_forename' => FILTER_SANITIZE_STRING,
+    'user_mail' => FILTER_VALIDATE_EMAIL,
+         'choix_site' => FILTER_SANITIZE_STRING,
+    'user_message' => FILTER_SANITIZE_STRING,
+);
+ filter_input_array(INPUT_POST, $args);
+
+*/
     $choice1 = filter_input(INPUT_POST, 'contacts1');
     $nom = filter_input(INPUT_POST,'user_name',FILTER_SANITIZE_STRING);
     $prenom = filter_input(INPUT_POST,'user_forename', FILTER_SANITIZE_STRING);
-    $mail = filter_input(INPUT_POST, 'user_mail');
+    $mail = filter_input(INPUT_POST, 'user_mail', FILTER_VALIDATE_EMAIL);
     $valeur = filter_input(INPUT_POST, 'choix_site');
-    $user_message = filter_input(INPUT_POST,'user_message',FILTER_SANITIZE_STRING );
+    $user_message = filter_input(INPUT_POST,'user_message',FILTER_SANITIZE_STRING);
 
     $date = date('Y-m-d-H-i-s');
     $file = 'contact/contact_' . $date . '.txt';
 
+    $formErrors = array(
+        'contact1' => 'Veuillez selectionner le bouton de votre choix',
+        'user_name' => 'Veuillez écrire votre nom',
+        'user_forename' => 'Veuillez écrire votre prénom',
+        'user_mail' => 'Veuillez écrire votre mail',
+        'user_message' => array('message_vide' => 'Veuillez écrire votre mail',
+                                'message_court' => 'vous devez taper au moins 5 lettres'
+                                )
+    );
     file_put_contents($file, $choice1, FILE_APPEND | LOCK_EX);
     file_put_contents($file, $nom, FILE_APPEND | LOCK_EX);
     file_put_contents($file, $prenom, FILE_APPEND | LOCK_EX);
@@ -17,7 +39,6 @@ if (filter_has_var(INPUT_POST, "envoyer")) {
     file_put_contents($file, $valeur, FILE_APPEND | LOCK_EX);
     file_put_contents($file, $user_message, FILE_APPEND | LOCK_EX);
 }
-$error1 = "erreur le champs est vide";
 ?>
 <main>
     <div class="flexmain">
@@ -34,7 +55,7 @@ $error1 = "erreur le champs est vide";
             <?php
             if (filter_has_var(INPUT_POST, "envoyer")) {
                 if (empty($choice1)) {
-                    echo $error1;
+                    echo $formErrors['contact1'];
                 }
             }
             ?>
@@ -45,7 +66,7 @@ $error1 = "erreur le champs est vide";
             <?php
             if (filter_has_var(INPUT_POST, "envoyer")) {
                 if (empty($nom)) {
-                    echo $error1;
+                    echo $formErrors['user_name'];
                 }
             }
             ?>
@@ -56,7 +77,7 @@ $error1 = "erreur le champs est vide";
             <?php
             if (filter_has_var(INPUT_POST, "envoyer")) {
                 if (empty($prenom)) {
-                    echo $error1;
+                    echo $formErrors['user_forename'];
                 }
             }
             ?>
@@ -67,11 +88,7 @@ $error1 = "erreur le champs est vide";
             <?php
             if (filter_has_var(INPUT_POST, "envoyer")) {
                 if (empty($mail)) {
-                    echo $error1;
-                } else if (filter_input(INPUT_POST, 'user_mail', FILTER_VALIDATE_EMAIL)) {
-                    echo("l'Email est valide");
-                } else {
-                    echo("l'Email n'est pas valide");
+                    echo $formErrors['user_mail'];
                 }
             }
             ?>
@@ -92,9 +109,9 @@ $error1 = "erreur le champs est vide";
             <?php
             if (filter_has_var(INPUT_POST, "envoyer")) {
                 if (empty($user_message)) {
-                    echo "erreur le champs est vide";
+                    echo $formErrors['user_message']['message_vide'];
                 } else if (strlen($user_message) < 5) {
-                    echo "vous devez taper au moins 5 lettres";
+                    echo $formErrors['user_message']['message_court'];
                 }
             }
             ?>
